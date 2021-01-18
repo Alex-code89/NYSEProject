@@ -37,8 +37,19 @@ namespace NYSEProject
             if (dt.Rows.Count == 1)
             {
                 this.Hide();
+                
                 Form1 mainForm = new Form1();
-                mainForm.Show();
+                ClientForm clientForm = new ClientForm();
+                if (dt.Rows[0]["Role"].ToString() == "Admin") { mainForm.Show(); }
+                else if (dt.Rows[0]["Role"].ToString() == "Client")
+                {
+                    clientForm.Show();
+                }
+                else
+                {
+                    MessageBox.Show("This user's role is not specified!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+                
             }
             else
             {
