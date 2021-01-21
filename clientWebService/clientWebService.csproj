@@ -84,6 +84,7 @@
     </Compile>
     <Compile Include="DBAccess.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Stocks.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

@@ -17,6 +17,7 @@ namespace NYSEProject
 {
     public partial class ClientForm : Form
     {
+        private const string V = "test";
         HttpClient client = new HttpClient();
 
         public ClientForm()
@@ -37,12 +38,20 @@ namespace NYSEProject
         }
         private void button1_Click(object sender, EventArgs e)
         {
-            HttpResponseMessage message = client.GetAsync("usersDT?symbol=" + textBox1.Text + "").Result;
+            HttpResponseMessage message = client.GetAsync("UsersDateSearch?startDate=" + textBox1.Text + "&endDate=" + textBox2.Text + "").Result;
             string messageJson = message.Content.ReadAsStringAsync().Result;
-            dataGridView1.DataSource = splitString(messageJson);
-            
-
+            dataGridView1.AutoGenerateColumns = true;
+            dataGridView1.Rows.Add(messageJson);
+            MessageBox.Show(messageJson);
         }
+        //private void button1_Click(object sender, EventArgs e)
+        //{
+        //    HttpResponseMessage message = client.GetAsync("usersDT?symbol=" + textBox1.Text + "").Result;
+        //    string messageJson = message.Content.ReadAsStringAsync().Result;
+        //    //dataGridView1.AutoGenerateColumns = true;
+        //    dataGridView1.DataSource = splitString(messageJson);
+        //}
+
 
         private void ClientForm_Load(object sender, EventArgs e)
         {
@@ -52,6 +61,11 @@ namespace NYSEProject
         private void button2_Click(object sender, EventArgs e)
         {
             MessageBox.Show(@"Alex put help instructions. This is the second line.", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+        }
+
+        private void dataGridView2_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
         }
     }
 }
